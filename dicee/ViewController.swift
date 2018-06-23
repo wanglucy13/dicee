@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        updateDiceImage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +27,22 @@ class ViewController: UIViewController {
     }
 
     @IBAction func rollButtonPressed(_ sender: UIButton) {
-        // random number generator 
+        // random number generator
+        updateDiceImage()
+        
+    }
+    
+    func updateDiceImage() {
+        randomDiceIndex1 = Int(arc4random_uniform(6)) + 1
+        randomDiceIndex2 = Int(arc4random_uniform(6)) + 1
+        
+        diceImageView1.image = UIImage(named: "dice\(randomDiceIndex1)")
+        
+        diceImageView2.image = UIImage(named: "dice\(randomDiceIndex2)")
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        updateDiceImage()
     }
     
 }
